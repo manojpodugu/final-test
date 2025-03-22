@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Route</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h2>Select Source and Destination</h2>
+
+    <label for="source">Select Source:</label>
+    <select id="source">
+        <option value="">-- Choose a location --</option>
+        <option value="Entrance">Entrance</option>
+        <option value="Office">Office</option>
+        <option value="Classroom">Classroom</option>
+        <option value="Canteen">Canteen</option>
+        <option value="Playground">Playground</option>
+    </select>
+
+    <label for="destination">Select Destination:</label>
+    <select id="destination">
+        <option value="">-- Choose a location --</option>
+        <option value="Entrance">Entrance</option>
+        <option value="Office">Office</option>
+        <option value="Classroom">Classroom</option>
+        <option value="Canteen">Canteen</option>
+        <option value="Playground">Playground</option>
+    </select>
+
+    <button onclick="navigateToMap()">Show Route</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
