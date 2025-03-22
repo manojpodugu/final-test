@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+/* Map Container */
+#map-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    border: 2px solid #000;
+}
+
+/* Responsive Map Image */
+#map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Source and Destination Markers */
+#source-marker, #destination-marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+/* Canvas for Dotted Line */
+#map-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+/* Arrow Indicator */
+#arrow {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('arrow.png') no-repeat center;
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    display: none;
+}
