@@ -3,8 +3,10 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 20px;
-}
+} 
+*/
 
+/*
 /* Map Container */
 #map-container {
     position: relative;
@@ -12,7 +14,8 @@ body {
     max-width: 800px;
     margin: auto;
     border: 2px solid #000;
-}
+} 
+*/
 
 /* Responsive Map Image */
 #map-image {
