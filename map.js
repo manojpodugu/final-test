@@ -39,6 +39,9 @@ function drawRoute() {
     const adjustedSourceY = sourceY + markerBaseOffset;
     const adjustedDestinationY = destinationY + markerBaseOffset;
 
+    // ✅ NEW: Calculate the angle for triangle rotation
+    const angle = Math.atan2(destinationY - sourceY, destinationX - sourceX) * (180 / Math.PI);
+
     // Position markers
     sourceMarker.style.left = sourceX + "px";
     sourceMarker.style.top = sourceY + "px";
@@ -47,6 +50,10 @@ function drawRoute() {
     destinationMarker.style.left = destinationX + "px";
     destinationMarker.style.top = destinationY + "px";
     destinationMarker.style.display = "block";
+
+    // ✅ NEW: Rotate the triangle to point towards the destination
+    destinationMarker.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+
 
     // Draw dotted line
     const ctx = canvas.getContext("2d");
