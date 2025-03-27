@@ -1,4 +1,4 @@
-/*
+
 // Image dimensions: 1152x648
 const locations = {
     "Entrance": { x: (926 / 1152) * 100, y: (322/ 648) * 100 },
@@ -65,82 +65,5 @@ function drawRoute() {
 // Adjust on window resize
 window.addEventListener("resize", drawRoute);
 window.onload = drawRoute;
-*/
 
-// Select elements
-const mapContainer = document.getElementById("map-container");
-const mapImage = document.getElementById("map-image");
-const sourceMarker = document.getElementById("source-marker");
-const destinationMarker = document.getElementById("destination-marker");
-const canvas = document.getElementById("map-canvas");
-const ctx = canvas.getContext("2d");
 
-let sourcePosition = null;
-let destinationPosition = null;
-
-// Adjust canvas size dynamically
-function resizeCanvas() {
-    canvas.width = mapImage.clientWidth;
-    canvas.height = mapImage.clientHeight;
-}
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
-
-// Function to place a marker at a clicked position
-function placeMarker(event, markerType) {
-    const rect = mapContainer.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    if (markerType === "source") {
-        sourceMarker.style.left = `${x}px`;
-        sourceMarker.style.top = `${y}px`;
-        sourceMarker.style.display = "block";
-        sourcePosition = { x, y };
-    } else {
-        destinationMarker.style.left = `${x}px`;
-        destinationMarker.style.top = `${y}px`;
-        destinationMarker.style.display = "block";
-        destinationPosition = { x, y };
-    }
-
-    if (sourcePosition && destinationPosition) {
-        drawDottedLine();
-    }
-}
-
-// Function to draw the dotted line between source and destination
-function drawDottedLine() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous lines
-
-    let markerOffset = 10; // Half of triangle base to connect to midpoint
-    let startX = sourcePosition.x;
-    let startY = sourcePosition.y + markerOffset; // Adjusting to base midpoint
-
-    let endX = destinationPosition.x;
-    let endY = destinationPosition.y + markerOffset; // Adjusting to base midpoint
-
-    ctx.setLineDash([5, 5]); // Dotted pattern
-    ctx.beginPath();
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(endX, endY);
-    ctx.strokeStyle = "blue";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-}
-
-// Listen for clicks on the map
-mapContainer.addEventListener("click", (event) => {
-    if (!sourcePosition) {
-        placeMarker(event, "source");
-    } else if (!destinationPosition) {
-        placeMarker(event, "destination");
-    } else {
-        // Reset markers if both are already placed
-        sourceMarker.style.display = "none";
-        destinationMarker.style.display = "none";
-        sourcePosition = null;
-        destinationPosition = null;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-});
