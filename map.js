@@ -34,6 +34,11 @@ function drawRoute() {
     const destinationX = (locations[destination].x / 100) * mapWidth;
     const destinationY = (locations[destination].y / 100) * mapHeight;
 
+    // ✅ NEW: Adjust Y position to connect to the midpoint of the triangle's base
+    const markerBaseOffset = 10; // Adjust this value based on marker size
+    const adjustedSourceY = sourceY + markerBaseOffset;
+    const adjustedDestinationY = destinationY + markerBaseOffset;
+
     // Position markers
     sourceMarker.style.left = sourceX + "px";
     sourceMarker.style.top = sourceY + "px";
@@ -50,8 +55,10 @@ function drawRoute() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
-    ctx.moveTo(sourceX, sourceY);
-    ctx.lineTo(destinationX, destinationY);
+    //ctx.moveTo(sourceX, sourceY);
+   // ctx.lineTo(destinationX, destinationY);
+    ctx.moveTo(sourceX, adjustedSourceY); // ✅ NEW: Connect to the base midpoint
+    ctx.lineTo(destinationX, adjustedDestinationY); // ✅ NEW: Connect to the base midpoint
     ctx.strokeStyle = "blue";
     ctx.lineWidth = 3;
     ctx.stroke();
