@@ -34,10 +34,14 @@ function drawRoute() {
     const destinationX = (locations[destination].x / 100) * mapWidth;
     const destinationY = (locations[destination].y / 100) * mapHeight;
 
-    // ✅ NEW: Adjust Y position to connect to the midpoint of the triangle's base
+    /*// ✅ NEW: Adjust Y position to connect to the midpoint of the triangle's base
     const markerBaseOffset = 10; // Adjust this value based on marker size
     const adjustedSourceY = sourceY + markerBaseOffset;
-    const adjustedDestinationY = destinationY + markerBaseOffset;
+    const adjustedDestinationY = destinationY + markerBaseOffset;*/
+
+    const markerSize = 20; // Adjust this based on actual marker size
+    const midpointX = destinationX - (markerSize / 2) * Math.cos((angle + 90) * Math.PI / 180);
+    const midpointY = destinationY - (markerSize / 2) * Math.sin((angle + 90) * Math.PI / 180);
 
     // ✅ NEW: Calculate the angle for triangle rotation
     const angle = Math.atan2(destinationY - sourceY, destinationX - sourceX) * (180 / Math.PI);
@@ -62,10 +66,17 @@ function drawRoute() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
+    //intial 2 lines
     //ctx.moveTo(sourceX, sourceY);
    // ctx.lineTo(destinationX, destinationY);
-    ctx.moveTo(sourceX, adjustedSourceY); // ✅ NEW: Connect to the base midpoint
-    ctx.lineTo(destinationX, adjustedDestinationY); // ✅ NEW: Connect to the base midpoint
+    //next 2 lines
+    //ctx.moveTo(sourceX, adjustedSourceY); // ✅ NEW: Connect to the base midpoint
+    //ctx.lineTo(destinationX, adjustedDestinationY); // ✅ NEW: Connect to the base midpoint
+    //lastest 2 lines
+
+    ctx.moveTo(sourceX, sourceY);
+    ctx.lineTo(midpointX, midpointY); // ✅ Connect to the base midpoint
+    
     ctx.strokeStyle = "blue";
     ctx.lineWidth = 3;
     ctx.stroke();
