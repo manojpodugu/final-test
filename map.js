@@ -39,13 +39,15 @@ function drawRoute() {
     const adjustedSourceY = sourceY + markerBaseOffset;
     const adjustedDestinationY = destinationY + markerBaseOffset;*/
 
+     // ✅ NEW: Calculate the angle for triangle rotation
+    const angle = Math.atan2(destinationY - sourceY, destinationX - sourceX) * (180 / Math.PI);
+
+
     const markerSize = 20; // Adjust this based on actual marker size
     const midpointX = destinationX - (markerSize / 2) * Math.cos((angle + 90) * Math.PI / 180);
     const midpointY = destinationY - (markerSize / 2) * Math.sin((angle + 90) * Math.PI / 180);
 
-    // ✅ NEW: Calculate the angle for triangle rotation
-    const angle = Math.atan2(destinationY - sourceY, destinationX - sourceX) * (180 / Math.PI);
-
+   
     // Position markers
     sourceMarker.style.left = sourceX + "px";
     sourceMarker.style.top = sourceY + "px";
