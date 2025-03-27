@@ -39,13 +39,16 @@ function drawRoute() {
     const adjustedSourceY = sourceY + markerBaseOffset;
     const adjustedDestinationY = destinationY + markerBaseOffset;*/
 
-     // ✅ NEW: Calculate the angle for triangle rotation
-    const angle = Math.atan2(destinationY - sourceY, destinationX - sourceX) * (180 / Math.PI);
-
-
-    const markerSize = 20; // Adjust this based on actual marker size
+   
+    //this is alternate of above three lines which commented
+    
+    // ✅ NEW: Determine the midpoint of the base of the triangle marker
+    /*const markerSize = 20; // Adjust this based on actual marker size
     const midpointX = destinationX - (markerSize / 2) * Math.cos((angle + 90) * Math.PI / 180);
-    const midpointY = destinationY - (markerSize / 2) * Math.sin((angle + 90) * Math.PI / 180);
+    const midpointY = destinationY - (markerSize / 2) * Math.sin((angle + 90) * Math.PI / 180);*/
+
+      // ✅ NEW: Calculate the angle for triangle rotation
+   // const angle = Math.atan2(destinationY - sourceY, destinationX - sourceX) * (180 / Math.PI);
 
    
     // Position markers
@@ -58,7 +61,7 @@ function drawRoute() {
     destinationMarker.style.display = "block";
 
     // ✅ NEW: Rotate the triangle to point towards the destination
-    destinationMarker.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+  //  destinationMarker.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
 
 
     // Draw dotted line
@@ -69,15 +72,15 @@ function drawRoute() {
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
     //intial 2 lines
-    //ctx.moveTo(sourceX, sourceY);
-   // ctx.lineTo(destinationX, destinationY);
+    ctx.moveTo(sourceX, sourceY);
+   ctx.lineTo(destinationX, destinationY);
     //next 2 lines
     //ctx.moveTo(sourceX, adjustedSourceY); // ✅ NEW: Connect to the base midpoint
     //ctx.lineTo(destinationX, adjustedDestinationY); // ✅ NEW: Connect to the base midpoint
     //lastest 2 lines
 
-    ctx.moveTo(sourceX, sourceY);
-    ctx.lineTo(midpointX, midpointY); // ✅ Connect to the base midpoint
+    //ctx.moveTo(sourceX, sourceY);
+   // ctx.lineTo(midpointX, midpointY); // ✅ Connect to the base midpoint
     
     ctx.strokeStyle = "blue";
     ctx.lineWidth = 3;
