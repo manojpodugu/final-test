@@ -43,6 +43,21 @@ body {
     pointer-events: none;
 }
 
+button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
 /* Arrow Indicator */
 /*
 #arrow {
