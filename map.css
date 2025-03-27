@@ -22,7 +22,7 @@ body {
 }
 
 /* Source and Destination Markers (Triangular) */
-#source-marker, #destination-marker {
+/*#source-marker, */ #destination-marker {
     position: absolute;
     width: 0;
     height: 0;
